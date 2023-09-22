@@ -37,6 +37,9 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jDialog1 = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -58,6 +61,21 @@ public class Main extends javax.swing.JFrame {
         artista = new javax.swing.JRadioButton();
         cliente = new javax.swing.JRadioButton();
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 520));
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -74,6 +92,11 @@ public class Main extends javax.swing.JFrame {
         jLabel2.setText("       Contraseña");
 
         jButton1.setText("Ingresar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -229,34 +252,51 @@ public class Main extends javax.swing.JFrame {
         String un = username2.getText();
         String password = password2.getText();
         int edad = (int) edad1.getModel().getValue();
-         Date h = new Date();
+        Date h = new Date();
         DateFormat df = new SimpleDateFormat("hh:mm");
         Date fecha = new Date();
         DateFormat df2 = new SimpleDateFormat("dd/MMMM/yyyy");
         df.format(h);
         df2.format(fecha);
-        String x ="";
-        x+= h+" ; "+fecha+" ; "+un+" ; ";
+        String x = "";
+        x += fecha + " ; " + un + " ; ";
         if (artista.isSelected() && edad >= 18) {
             String name_artist = JOptionPane.showInputDialog(this, "Ingrese su nombre de artista :");
             Artistas a = new Artistas(name_artist, un, password, edad);
             artistas.add(a);
-            x+="artista";
+            usuarios.add(a);
+            x += "artista";
             JOptionPane.showMessageDialog(this, "Agregado!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Debe ser mayor a 18 para ser artista");
-        }
-        if (cliente.isSelected() && edad >= 12) {
+        } else if (cliente.isSelected() && edad >= 12) {
             Clientes c = new Clientes(un, password, edad);
             clientes.add(c);
-             x+="cliente";
+            usuarios.add(c);
+            x += "cliente";
             JOptionPane.showMessageDialog(this, "Agregado!");
         } else {
-            JOptionPane.showMessageDialog(this, "Debe ser mayor a 12 para ser artista");
+            JOptionPane.showMessageDialog(this, "Revise sus datos");
         }
-       
+
         bitcora.add(x);
+        cargarBitacora(x);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        String x = nombre_usuario.getText();
+        String y = contrasena.getText();
+        
+        int cont = revisarLogin(x, y);
+        
+        if (cont>=1) {
+            
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(this, "No existe ese usuario");
+            
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     public void cargarBitacora(String x) {
         FileWriter fw = null;
@@ -264,11 +304,10 @@ public class Main extends javax.swing.JFrame {
 
         try {
             File fichero = new File("./Bitacora.txt");
-            fw = new FileWriter(fichero);
+            fw = new FileWriter(fichero, true);
             bw = new BufferedWriter(fw);
-            bw.write(x+"\n");
+            bw.write(x + "\n");
             bw.flush();
-      
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -278,6 +317,20 @@ public class Main extends javax.swing.JFrame {
         } catch (IOException ex) {
         }
     }
+
+    public int revisarLogin(String user, String password) {
+        int cont = 0;
+        for (Usuarios usuario : usuarios) {
+            String user2 = usuario.getUsername();
+            String pass2 = usuario.getPassword();
+            if (user2.equals(user) && pass2.equals(password)) {
+                cont++;
+            }
+        }
+        return cont;
+    }
+    
+    
 
     /**
      * @param args the command line arguments
@@ -315,7 +368,8 @@ public class Main extends javax.swing.JFrame {
     }
     private ArrayList<Clientes> clientes = new ArrayList();
     private ArrayList<Artistas> artistas = new ArrayList();
-    private ArrayList<String> bitcora= new ArrayList();
+    private ArrayList<String> bitcora = new ArrayList();
+    private ArrayList<Usuarios> usuarios = new ArrayList();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton artista;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -324,6 +378,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSpinner edad1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -334,7 +389,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField nombre_usuario;
     private javax.swing.JTextField password2;
     private javax.swing.JTextField username2;
