@@ -19,22 +19,21 @@ import javax.swing.JLabel;
  * @author Valeria Romero
  */
 public class adminUsers {
-    private ArrayList<Clientes> listaelementos = new ArrayList();
+
+    private ArrayList<Clientes> eventos = new ArrayList();
     private File archivo = null;
-    private String codigo;
+    private final long serialVersionUID = 333L;
+
     public adminUsers(String path) {
         archivo = new File(path);
     }
 
-   
-    public ArrayList<Clientes> getListaelementos() {
-        return listaelementos;
+    public ArrayList<Clientes> getEventos() {
+        return eventos;
     }
-    public void agregarCliente(Clientes x){
-        listaelementos.add(x);
-    }
-    public void setListaelementos(ArrayList<Clientes> listaelementos) {
-        this.listaelementos = listaelementos;
+
+    public void setEventos(ArrayList<Clientes> eventos) {
+        this.eventos = eventos;
     }
 
     public File getArchivo() {
@@ -45,18 +44,13 @@ public class adminUsers {
         this.archivo = archivo;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public void setEventos(Clientes a) {
+        eventos.add(a);
     }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-    
 
     public void cargarArchivo() {
         try {
-            listaelementos = new ArrayList();
+            eventos = new ArrayList();
             Clientes temp;
             if (archivo.exists()) {
                 FileInputStream entrada
@@ -65,7 +59,7 @@ public class adminUsers {
                         = new ObjectInputStream(entrada);
                 try {
                     while ((temp = (Clientes) objeto.readObject()) != null) {
-                        listaelementos.add(temp);
+                        eventos.add(temp);
                     }
                 } catch (EOFException e) {
                     //encontro el final del archivo
@@ -84,7 +78,7 @@ public class adminUsers {
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (Clientes t : listaelementos) {
+            for (Clientes t : eventos) {
                 bw.writeObject(t);
             }
             bw.flush();

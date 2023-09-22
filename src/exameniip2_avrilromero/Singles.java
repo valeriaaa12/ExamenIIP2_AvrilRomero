@@ -18,9 +18,9 @@ public class Singles extends Lanzamientos implements Serializable{
     public Singles() {
     }
 
-    public Singles(Canciones cancion, String titulo, Date fecha, int likes) {
+    public Singles( String titulo, Date fecha, int likes) {
         super(titulo, fecha, likes);
-        this.cancion = cancion;
+       
     }
 
     public Canciones getCancion() {

@@ -11,16 +11,17 @@ import java.util.Date;
  *
  * @author Valeria Romero
  */
-public class Album extends Lanzamientos{
-    private ArrayList<Canciones> canciones  = new ArrayList();
+public class Album extends Lanzamientos {
+
+    private ArrayList<Canciones> canciones = new ArrayList();
     private int cant_canciones;
 
     public Album() {
     }
 
-    public Album(ArrayList<Canciones> canciones, int cant_canciones, String titulo, Date fecha, int likes) {
+    public Album(int cant_canciones, String titulo, Date fecha, int likes) {
         super(titulo, fecha, likes);
-        this.canciones = canciones;
+
         this.cant_canciones = cant_canciones;
     }
 
@@ -30,6 +31,10 @@ public class Album extends Lanzamientos{
 
     public void setCanciones(ArrayList<Canciones> canciones) {
         this.canciones = canciones;
+    }
+
+    public void agregarCancion(Canciones a) {
+        canciones.add(a);
     }
 
     public int getCant_canciones() {
@@ -68,6 +73,5 @@ public class Album extends Lanzamientos{
     public String toString() {
         return titulo;
     }
-    
-    
+
 }
