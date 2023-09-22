@@ -14,13 +14,12 @@ import java.util.logging.Logger;
 public class Clientes extends Usuarios{
     private ArrayList<Canciones> favoritas;
     private ArrayList<Listas> listas_reproduccion;
-    private ArrayList<Canciones> megusta;
+    private ArrayList<Listas> megusta;
     public Clientes() {
     }
 
-    public Clientes(ArrayList<Canciones> favoritas, String username, String password, int edad) {
+    public Clientes(String username, String password, int edad) {
         super(username, password, edad);
-        this.favoritas = favoritas;
     }
 
     public ArrayList<Canciones> getFavoritas() {
@@ -62,7 +61,7 @@ public class Clientes extends Usuarios{
     public void setEdad(int edad) {
         this.edad = edad;
     }
-    public void addMegusta(Canciones e){
+    public void addMegusta(Listas e){
         megusta.add(e);
     }
     public void addFav(Canciones e){

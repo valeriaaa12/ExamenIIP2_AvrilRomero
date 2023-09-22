@@ -4,40 +4,29 @@
  */
 package exameniip2_avrilromero;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
  *
  * @author Valeria Romero
  */
-public class Album extends Lanzamientos{
-    private ArrayList<Canciones> canciones;
-    private int cant_canciones;
+public class Singles extends Lanzamientos{
+    private Canciones cancion;
 
-    public Album() {
+    public Singles() {
     }
 
-    public Album(ArrayList<Canciones> canciones, int cant_canciones, String titulo, Date fecha, int likes) {
+    public Singles(Canciones cancion, String titulo, Date fecha, int likes) {
         super(titulo, fecha, likes);
-        this.canciones = canciones;
-        this.cant_canciones = cant_canciones;
+        this.cancion = cancion;
     }
 
-    public ArrayList<Canciones> getCanciones() {
-        return canciones;
+    public Canciones getCancion() {
+        return cancion;
     }
 
-    public void setCanciones(ArrayList<Canciones> canciones) {
-        this.canciones = canciones;
-    }
-
-    public int getCant_canciones() {
-        return cant_canciones;
-    }
-
-    public void setCant_canciones(int cant_canciones) {
-        this.cant_canciones = cant_canciones;
+    public void setCancion(Canciones cancion) {
+        this.cancion = cancion;
     }
 
     public String getTitulo() {
@@ -66,7 +55,7 @@ public class Album extends Lanzamientos{
 
     @Override
     public String toString() {
-        return titulo;
+        return  titulo;
     }
     
     

@@ -19,12 +19,12 @@ public class Artistas extends Usuarios{
     public Artistas() {
     }
 
-    public Artistas(String nombre, ArrayList<Canciones> canciones, ArrayList<Album> albumes, String username, String password, int edad) {
+    public Artistas(String nombre, String username, String password, int edad) {
         super(username, password, edad);
         this.nombre = nombre;
-        this.canciones = canciones;
-        this.albumes = albumes;
     }
+
+   
 
     public String getNombre() {
         return nombre;
