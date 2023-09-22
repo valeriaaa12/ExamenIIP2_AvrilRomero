@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * @author Valeria Romero
  */
 public class Clientes extends Usuarios implements Serializable{
-     private static final long serialVersionUID =  777L;
+     private static final long serialVersionUID =  777L;    
     private ArrayList<Canciones> favoritas = new ArrayList();
     private ArrayList<Listas> listas_reproduccion = new ArrayList();
     private ArrayList<Listas> megusta = new ArrayList();

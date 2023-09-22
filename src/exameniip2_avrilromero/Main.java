@@ -30,7 +30,13 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        Abrir();
+        llenarClientes();
+    }
+
+    public void llenarClientes() {
+        ap.cargarArchivo();
+        clientes = ap.getListaelementos();
+
     }
 
     /**
@@ -435,7 +441,9 @@ public class Main extends javax.swing.JFrame {
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         String un = username2.getText();
+        System.out.println(un);
         String password = password2.getText();
+        System.out.println(password);
         int edad = (int) edad1.getModel().getValue();
         Date h = new Date();
         DateFormat df = new SimpleDateFormat("hh:mm");
@@ -445,29 +453,30 @@ public class Main extends javax.swing.JFrame {
         df2.format(fecha);
         String x = "";
         x += fecha + " ; " + un + " ; ";
-        if (artista.isSelected() && edad >= 18) {
+        if (artista.isSelected() ) {
             String name_artist = JOptionPane.showInputDialog(this, "Ingrese su nombre de artista :");
             Artistas a = new Artistas(name_artist, un, password, edad);
             artistas.add(a);
             usuarios.add(a);
             x += "artista";
             JOptionPane.showMessageDialog(this, "Agregado!");
-        } else if (cliente.isSelected() && edad >= 12) {
+        } 
+        if (cliente.isSelected() ) {
             Clientes c = new Clientes(un, password, edad);
+            System.out.println(c);
+            ap.agregarCliente(c);
             clientes.add(c);
             usuarios.add(c);
             x += "cliente";
             JOptionPane.showMessageDialog(this, "Agregado!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Revise sus datos");
         }
-
+        ap.escribirArchivo();
+        ap.cargarArchivo();
         bitcora.add(x);
         cargarBitacora(x);
         username2.setText("");
         password2.setText("");
-        Guardar();
-        Abrir();
+
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -521,37 +530,24 @@ public class Main extends javax.swing.JFrame {
     public void cargarClientes() {
         adminUsers ad = new adminUsers("./Clientes");
         ad.setListaelementos(clientes);
-        ad.CargarArchivo();
+        ad.cargarArchivo();
     }
-
-    
 
     public void Guardar() {
-        
-         
-            adminUsers ap = new adminUsers("./Clientes");
-            ap.CargarArchivo();
-            ArrayList X = new ArrayList();//AGREGUE ESTA LINEA DE MAS.
-            ap.setListaelementos(X);       
-            for (int i = 0; i < clientes.size(); i++) {
-                ap.agregarCliente(clientes.get(i));
-                System.out.println(ap.getListaelementos().toString());
-            }
-            try {
-                ap.escribirArchivo();
 
-            } catch (IOException ex) {
-                Logger.getLogger(Main.class
-                        .getName()).log(Level.SEVERE, null, ex);
-            }
-          
-        
+        ap.cargarArchivo();
+        for (int i = 0; i < clientes.size(); i++) {
+            ap.agregarCliente(clientes.get(i));
+            System.out.println(ap.getListaelementos().toString());
+        }
+        ap.escribirArchivo();
+
     }
 
-    public void Abrir() {    
-        adminUsers ap = new adminUsers("./Clientes");
-        ap.CargarArchivo();
-        for (int i = 0; i < ap.getListaelementos().size(); i++) {          
+    public void Abrir() {
+        adminUsers ap = new adminUsers("./Clientes.w");
+        ap.escribirArchivo();
+        for (int i = 0; i < ap.getListaelementos().size(); i++) {
             clientes.add(ap.getListaelementos().get(i));
             System.out.println(ap.getListaelementos().get(i));
         }//Fin del For
@@ -595,6 +591,7 @@ public class Main extends javax.swing.JFrame {
     private ArrayList<Artistas> artistas = new ArrayList();
     private ArrayList<String> bitcora = new ArrayList();
     private ArrayList<Usuarios> usuarios = new ArrayList();
+    private adminUsers ap = new adminUsers("./Clientes.w");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton artista;
     private javax.swing.ButtonGroup buttonGroup1;

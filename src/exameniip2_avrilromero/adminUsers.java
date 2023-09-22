@@ -4,6 +4,7 @@
  */
 package exameniip2_avrilromero;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -53,41 +54,47 @@ public class adminUsers {
     }
     
 
-    public void CargarArchivo() {
+    public void cargarArchivo() {
         try {
             listaelementos = new ArrayList();
             Clientes temp;
             if (archivo.exists()) {
-                FileInputStream entrada = new FileInputStream(archivo);//Se crea un flujo de entrada (FileInputStream) llamado entrada para leer bytes del archivo especificado en la variable archivo.
-                ObjectInputStream objeto = new ObjectInputStream(entrada);//Se crea un flujo de objetos (ObjectInputStream) llamado objeto que se asocia con el flujo de entrada entrada. Este flujo se utiliza para leer objetos serializados del archivo.
+                FileInputStream entrada
+                        = new FileInputStream(archivo);
+                ObjectInputStream objeto
+                        = new ObjectInputStream(entrada);
                 try {
                     while ((temp = (Clientes) objeto.readObject()) != null) {
                         listaelementos.add(temp);
                     }
-                } catch (Exception e) {
+                } catch (EOFException e) {
+                    //encontro el final del archivo
                 }
                 objeto.close();
                 entrada.close();
             }
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
-    public void escribirArchivo() throws IOException {
+    public void escribirArchivo() {
         FileOutputStream fw = null;
         ObjectOutputStream bw = null;
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (Object UML : listaelementos) {
-                bw.writeObject(UML);
+            for (Clientes t : listaelementos) {
+                bw.writeObject(t);
             }
-            bw.writeObject(codigo);
             bw.flush();
-        } catch (Exception e) {
-
+        } catch (Exception ex) {
+        } finally {
+            try {
+                bw.close();
+                fw.close();
+            } catch (Exception ex) {
+            }
         }
-        bw.close();
-        fw.close();
     }
 }
