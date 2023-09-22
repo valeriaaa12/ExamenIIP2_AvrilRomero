@@ -18,22 +18,21 @@ import javax.swing.JLabel;
  * @author Valeria Romero
  */
 public class adminUsers {
-    private ArrayList<Object> listaelementos = new ArrayList();
+    private ArrayList<Clientes> listaelementos = new ArrayList();
     private File archivo = null;
     private String codigo;
     public adminUsers(String path) {
         archivo = new File(path);
     }
 
-    public void AgregarUML(JLabel UML) {
-        listaelementos.add(UML);
-    }
-
-    public ArrayList<Object> getListaelementos() {
+   
+    public ArrayList<Clientes> getListaelementos() {
         return listaelementos;
     }
-
-    public void setListaelementos(ArrayList<Object> listaelementos) {
+    public void agregarCliente(Clientes x){
+        listaelementos.add(x);
+    }
+    public void setListaelementos(ArrayList<Clientes> listaelementos) {
         this.listaelementos = listaelementos;
     }
 
@@ -57,12 +56,12 @@ public class adminUsers {
     public void CargarArchivo() {
         try {
             listaelementos = new ArrayList();
-            JLabel temp;
+            Clientes temp;
             if (archivo.exists()) {
                 FileInputStream entrada = new FileInputStream(archivo);//Se crea un flujo de entrada (FileInputStream) llamado entrada para leer bytes del archivo especificado en la variable archivo.
                 ObjectInputStream objeto = new ObjectInputStream(entrada);//Se crea un flujo de objetos (ObjectInputStream) llamado objeto que se asocia con el flujo de entrada entrada. Este flujo se utiliza para leer objetos serializados del archivo.
                 try {
-                    while ((temp = (JLabel) objeto.readObject()) != null) {
+                    while ((temp = (Clientes) objeto.readObject()) != null) {
                         listaelementos.add(temp);
                     }
                 } catch (Exception e) {

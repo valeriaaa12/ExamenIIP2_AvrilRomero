@@ -4,16 +4,18 @@
  */
 package exameniip2_avrilromero;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Valeria Romero
  */
-public class Listas {
+public class Listas implements Serializable{
+    private static final long serialVersionUID =  777L;
     private String nombre;
     private int likes;
-    private ArrayList<Canciones> canciones;
+    private ArrayList<Canciones> canciones = new ArrayList();
 
     public Listas(String nombre, int likes, ArrayList<Canciones> canciones) {
         this.nombre = nombre;

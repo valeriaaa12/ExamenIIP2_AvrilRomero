@@ -4,13 +4,15 @@
  */
 package exameniip2_avrilromero;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Valeria Romero
  */
-public class Singles extends Lanzamientos{
+public class Singles extends Lanzamientos implements Serializable{
+    private static final long serialVersionUID =  777L;
     private Canciones cancion;
 
     public Singles() {

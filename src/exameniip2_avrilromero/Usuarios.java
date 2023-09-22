@@ -4,14 +4,15 @@
  */
 package exameniip2_avrilromero;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Valeria Romero
  */
-public class Usuarios {
-
+public class Usuarios implements Serializable{
+    private static final long serialVersionUID =  777L;
     protected String username;
    
     protected String password;

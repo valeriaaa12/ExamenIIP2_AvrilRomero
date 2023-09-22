@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Valeria Romero
  */
 public class Album extends Lanzamientos{
-    private ArrayList<Canciones> canciones;
+    private ArrayList<Canciones> canciones  = new ArrayList();
     private int cant_canciones;
 
     public Album() {

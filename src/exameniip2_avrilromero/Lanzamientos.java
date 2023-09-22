@@ -4,13 +4,15 @@
  */
 package exameniip2_avrilromero;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Valeria Romero
  */
-public class Lanzamientos {
+public class Lanzamientos implements Serializable{
+    private static final long serialVersionUID =  777L;
     protected String titulo;
     protected Date fecha;
     protected int likes;

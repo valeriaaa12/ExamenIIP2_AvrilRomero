@@ -4,19 +4,22 @@
  */
 package exameniip2_avrilromero;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Valeria Romero
  */
-public class Canciones {
+public class Canciones implements Serializable{
+    private static final long serialVersionUID =  777L;
     private String titulo;
-    private int duracion;
+    private double duracion;
     private Lanzamientos referencia;
 
     public Canciones() {
     }
 
-    public Canciones(String titulo, int duracion, Lanzamientos referencia) {
+    public Canciones(String titulo, double duracion, Lanzamientos referencia) {
         this.titulo = titulo;
         this.duracion = duracion;
         this.referencia = referencia;
@@ -30,11 +33,11 @@ public class Canciones {
         this.titulo = titulo;
     }
 
-    public int getDuracion() {
+    public double getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(int duracion) {
+    public void setDuracion(double duracion) {
         this.duracion = duracion;
     }
 

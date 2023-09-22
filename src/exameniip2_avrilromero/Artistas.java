@@ -4,17 +4,18 @@
  */
 package exameniip2_avrilromero;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Valeria Romero
  */
-public class Artistas extends Usuarios{
-    
+public class Artistas extends Usuarios implements Serializable{
+     private static final long serialVersionUID =  777L;
     private String nombre;
-    private ArrayList<Canciones> canciones;
-    private ArrayList<Album> albumes;
+    private ArrayList<Canciones> canciones = new ArrayList();
+    private ArrayList<Album> albumes = new ArrayList();
 
     public Artistas() {
     }
