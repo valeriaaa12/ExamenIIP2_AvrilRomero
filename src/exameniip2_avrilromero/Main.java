@@ -36,7 +36,7 @@ public class Main extends javax.swing.JFrame {
 
     public void llenarClientes() {
         ap.cargarArchivo();
-        clientes = ap.getListaelementos();
+        clientes = ap.getEventos();
 
     }
 
@@ -86,6 +86,11 @@ public class Main extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         pb_simulacion = new javax.swing.JProgressBar();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        cb_canciones = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -374,21 +379,54 @@ public class Main extends javax.swing.JFrame {
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
 
+        jButton6.setText("Start");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+
+        jButton7.setText("Pause");
+
+        jButton8.setText("seguir");
+
+        jLabel16.setText("Escoger Canción");
+
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(pb_simulacion, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pb_simulacion, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(18, 18, 18)
+                        .addComponent(cb_canciones, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGap(152, 152, 152)
+                .addGap(88, 88, 88)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(cb_canciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
                 .addComponent(pb_simulacion, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7)
+                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton8))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Simulación", jPanel13);
@@ -612,7 +650,7 @@ public class Main extends javax.swing.JFrame {
         if (cliente.isSelected()) {
             Clientes c = new Clientes(un, password, edad);
             System.out.println(c);
-            ap.agregarCliente(c);
+            ap.setEventos(c);
             clientes.add(c);
             usuarios.add(c);
             x += "cliente";
@@ -673,6 +711,11 @@ public class Main extends javax.swing.JFrame {
         Canciones c = new Canciones(titulo, Double.parseDouble(x), ref);
         canciones.add(c);
     }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        // TODO add your handling code here:
+        Hilo
+    }//GEN-LAST:event_jButton6MouseClicked
 
     public void cargarBitacora(String x) {
         FileWriter fw = null;
@@ -754,6 +797,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JRadioButton artista;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JSpinner cant_canciones;
+    private javax.swing.JComboBox<String> cb_canciones;
     private javax.swing.JComboBox<String> cb_referencia;
     private javax.swing.JRadioButton cliente;
     private javax.swing.JTextField contrasena;
@@ -764,6 +808,9 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JLabel jLabel1;
@@ -773,6 +820,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

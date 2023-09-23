@@ -67,8 +67,9 @@ public class Hilo extends Thread {
     @Override
     public void run() {
         try {
-            while (true) {
+            while (seguir) {
                 if (pausado) {
+                    seguir=false;
                 } else {
                    p.setValue((int) (p.getValue()+100/x));
                 }
