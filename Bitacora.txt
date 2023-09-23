@@ -18,3 +18,7 @@ Fri Sep 22 18:34:41 CST 2023 ; x ; cliente
 Fri Sep 22 18:35:27 CST 2023 ; x ; cliente
 Fri Sep 22 18:42:43 CST 2023 ; x ; cliente
 Fri Sep 22 18:53:56 CST 2023 ; x ; cliente
+Fri Sep 22 19:25:49 CST 2023 ; x ; cliente
+Fri Sep 22 19:26:46 CST 2023 ; x ; artista
+Fri Sep 22 19:27:25 CST 2023 ; x ; cliente
+Fri Sep 22 19:40:42 CST 2023 ; x ; artista
