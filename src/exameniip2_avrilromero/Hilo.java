@@ -26,11 +26,11 @@ public class Hilo extends Thread {
     double z;
     private JProgressBar p;
 
-    public Hilo(double x, double z) {
-        pausado = false;
-        this.x = x;
-        this.z = z;
+    public Hilo(JProgressBar p) {
+        this.p = p;
     }
+
+   
 
     public boolean isSeguir() {
         return seguir;
@@ -66,18 +66,17 @@ public class Hilo extends Thread {
 
     @Override
     public void run() {
-        try {
-            while (seguir) {
-                if (pausado) {
-                    seguir=false;
-                } else {
-                   p.setValue((int) (p.getValue()+100/x));
-                }
+         while (vive) {
+            if (seguir) {
+                p.setValue(p.getValue() + 1);
+                //activar y modificar propiedad stringPainted para que esto funciones
+                p.setString(Integer.toString(p.getValue()) + " Minutos");
 
-                Thread.sleep(100);
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException ex) {
+            }
         }
     }
 
