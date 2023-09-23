@@ -72,7 +72,7 @@ public class Clientes extends Usuarios implements Serializable{
 
     @Override
     public String toString() {
-        return  favoritas + ","+ listas_reproduccion;
+        return  username;
     }
    
     

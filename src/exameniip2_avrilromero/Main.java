@@ -880,14 +880,13 @@ public class Main extends javax.swing.JFrame {
         modelo.addElement(new Canciones(titulo_cancion.getText(),
                 (int) sp_min.getModel().getValue(), ref
         )
-        
-    );
-        
+        );
+
     }//GEN-LAST:event_jToggleButton2MouseClicked
 
     private void jTabbedPane2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane2StateChanged
         // TODO add your handling code here:
-        DefaultComboBoxModel cb = (DefaultComboBoxModel)cb_referencia.getModel();
+        DefaultComboBoxModel cb = (DefaultComboBoxModel) cb_referencia.getModel();
         for (Lanzamientos lanzamineto : lanzamientos) {
             cb.addElement(lanzamineto);
         }
@@ -964,6 +963,12 @@ public class Main extends javax.swing.JFrame {
             }
         }
         return cont;
+    }
+
+    public static void pruebaimprimir(ArrayList<Clientes> x) {
+        for (Clientes clientes : x) {
+            System.out.println(clientes.toString());
+        }
     }
 
     /**
